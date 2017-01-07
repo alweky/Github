@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RazarsController.cs" />
     <Compile Include="DAL\MovieContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,11 +185,16 @@
     <Compile Include="Migrations\201701060105591_DataAnnotations.Designer.cs">
       <DependentUpon>201701060105591_DataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701060229325_Razar.cs" />
+    <Compile Include="Migrations\201701060229325_Razar.Designer.cs">
+      <DependentUpon>201701060229325_Razar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Razar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -266,6 +272,12 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Razars\Create.cshtml" />
+    <Content Include="Views\Razars\Delete.cshtml" />
+    <Content Include="Views\Razars\Details.cshtml" />
+    <Content Include="Views\Razars\Edit.cshtml" />
+    <Content Include="Views\Razars\Index.cshtml" />
+    <Content Include="Views\Razars\Intro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701060105591_DataAnnotations.resx">
       <DependentUpon>201701060105591_DataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060229325_Razar.resx">
+      <DependentUpon>201701060229325_Razar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

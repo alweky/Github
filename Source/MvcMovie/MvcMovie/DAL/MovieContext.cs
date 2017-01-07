@@ -12,6 +12,7 @@ namespace MvcMovie.DAL
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Razar> Razars { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

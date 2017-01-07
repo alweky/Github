@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Intro";
+}
+
+<html>
+<head>
+    <style type="text/css">
+           body {background-color: beige; font-family: Verdana, Arial; margin: 50px;}
+           form {padding: 10px; border-style: solid; width: 250px}
+    </style>
+</head>
+<body>
+    <h2>Intro</h2>
+
+    <table border="1">
+        <tr>
+            <td>Requested URL</td>
+            <td>Relative Path</td>
+            <td>Full Path</td>
+            <td>HTTP Request Type</td>
+        </tr>
+        <tr>
+            <td>@Request.Url</td>
+            <td>@Request.FilePath</td>
+            <td>@Request.MapPath(Request.FilePath)</td>
+            <td>@Request.RequestType</td>
+        </tr>
+    </table>
+
+    @{ 
+        var showToday = true;
+        if (showToday)
+        {
+            <br />
+            @DateTime.Today;
+            <br />
+        }
+    }
+
+    @{
+        var total = 0;
+        var totalMessage = "";
+        if (IsPost)
+        {
+            var num1 = Request["text1"];
+            var num2 = Request["text2"];
+
+            total = num1.AsInt() + num2.AsInt();
+            totalMessage = "Total = " + total;
+        }
+    }
+    <br />
+    <p>Enter two whole numbers and then click <string>Add</string></p>
+    <form action="" method="post">
+        <p>
+            <label for="text1">First Number:</label>
+            <input type="text" name="text1" />
+            <label for="text2">Second Number:</label>
+            <input type="text" name="text2" />
+            <input type="submit" value="Add" />
+        </p>
+        <p>@totalMessage</p>
+    </form>
+    <br />
+    <p>Loops for you!</p>
+    @for (var i = 10; i < 21; i++)
+    {
+        <p>Line #: @i</p>
+    }
+    <br />
+    @{ 
+        string[] teamMembers = { "Matt", "Joanne", "Robert", "Nancy" };
+        <p>The number of names in the teamMembers array: @teamMembers.Length</p>
+        <p>Robert is now in position: @Array.IndexOf(teamMembers, "Robert")</p>
+        <p>The array item at position 2 (zero-based) is @teamMembers[2]</p>
+        <h3>Current order of team members in the list</h3>
+        foreach (var name in teamMembers)
+        {
+            <p>@name</p>
+        }
+        <h3>Reversed order of team members in the list</h3>
+        Array.Reverse(teamMembers);
+        foreach (var reversedItem in teamMembers)
+        {
+            <p>@reversedItem</p>
+        }
+
+    }
+
+    @{ 
+        var myScores = new Dictionary<string, int>();
+        myScores.Add("test1", 71);
+        myScores.Add("test2", 82);
+        myScores.Add("test3", 100);
+        myScores.Add("test4", 59);
+    }
+    <p>My score on test 3 is: @myScores["test3"]%</p>
+    @{ myScores["test4"] = 79;}
+    <p>My corrected score on test 4 is: @myScores["test4"]%</p>
+
+    @{ 
+        var dataFilePath = "~/dataFile.txt";
+        var fileContents = "";
+        var physicalPath = Server.MapPath(dataFilePath);
+        var userMessage = "Hello world, the time is " + DateTime.Now;
+        var userErrMsg = "";
+        var errMsg = "";
+
+        if (IsPost)
+        {
+            try
+            {
+                fileContents = File.ReadAllText(@"c:\batafile.txt");
+                fileContents = File.ReadAllText(physicalPath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                errMsg = ex.Message;
+                userErrMsg = "A file could not be opened, please contact your system administrator.";
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                errMsg = ex.Message;
+                userErrMsg = "A directory was not found, please contact your system administrator.";
+            }
+        }
+        else
+        {
+            File.WriteAllText(physicalPath, userMessage);
+        }
+    }
+        <form method="POST" action="">
+            <input type="submit" name="submit" value="Open File" />
+        </form>
+        <p>@fileContents</p>
+        <p>@userErrMsg</p>
+</body>
+</html>
